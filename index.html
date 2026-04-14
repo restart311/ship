@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Морской бой · Telegram</title>
+    <!-- Внешние стили -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Telegram Web App SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <!-- Основной скрипт -->
+    <script src="script.js" defer></script>
+</head>
+<body class="theme-sea">
+    <!-- ЭКРАН МЕНЮ -->
+    <div id="menu-screen" class="screen">
+        <div class="menu-title">⚓ МОРСКОЙ БОЙ</div>
+        <div class="menu-buttons">
+            <div class="menu-btn" id="play-bot-btn">🤖 Игра с ботом</div>
+            <div class="menu-btn" id="play-player-btn">👥 Игра с игроком</div>
+            <div class="menu-btn small" id="settings-btn">⚙️ Настройки</div>
+            <div class="menu-btn small" id="rating-btn">🏆 Рейтинг</div>
+        </div>
+        <!-- Панель настроек -->
+        <div id="settings-panel" class="settings-panel hidden">
+            <div style="text-align:center; margin-bottom:12px; font-size:1.3rem;">Выбор темы</div>
+            <div class="theme-buttons">
+                <button class="theme-btn" data-theme="paper">📄 Бумага</button>
+                <button class="theme-btn active" data-theme="sea">🌊 Море</button>
+                <button class="theme-btn" data-theme="space">🚀 Космос</button>
+            </div>
+            <div style="display:flex; justify-content:center;">
+                <button class="back-from-settings" id="close-settings-btn">← Назад</button>
+            </div>
+        </div>
+        <!-- Панель рейтинга -->
+        <div id="rating-panel" class="rating-panel hidden">
+            <div style="text-align:center; margin-bottom:12px; font-size:1.3rem;">🏆 Мировой рейтинг</div>
+            <table class="rating-table" id="rating-table-body"></table>
+            <div style="display:flex; justify-content:center;">
+                <button class="back-from-rating" id="close-rating-btn">Скрыть</button>
+            </div>
+        </div>
+        <div class="footer-note" style="margin-top:24px; opacity:0.7;">Telegram Mini App</div>
+    </div>
+
+    <!-- ЭКРАН ИГРЫ -->
+    <div id="game-screen" class="screen hidden">
+        <div class="game-header">
+            <button class="back-to-menu" id="back-to-menu-btn">≡ Меню</button>
+            <h1>⚓ МОРСКОЙ БОЙ</h1>
+        </div>
+        <div class="difficulty-panel">
+            <button class="difficulty-btn" data-diff="easy">🟢 Лёгкий</button>
+            <button class="difficulty-btn active" data-diff="medium">🟡 Средний</button>
+            <button class="difficulty-btn" data-diff="hard">🔴 Сложный</button>
+        </div>
+        <div class="boards">
+            <div class="board-wrapper">
+                <div class="board-title">
+                    <span>🧑 Твой флот</span>
+                    <span id="player-ships-count">10</span>
+                </div>
+                <div id="player-board" class="board"></div>
+            </div>
+            <div class="board-wrapper">
+                <div class="board-title">
+                    <span>🤖 Флот врага</span>
+                    <span id="computer-ships-count">10</span>
+                </div>
+                <div id="computer-board" class="board"></div>
+            </div>
+        </div>
+        <!-- Сонар панель -->
+        <div class="sonar-panel">
+            <div class="sonar-info">
+                <span>🔍 Сканов: <span id="sonar-total">5</span></span>
+                <span>📋 В игре: <span id="sonar-game">2</span></span>
+            </div>
+            <button class="sonar-btn" id="sonar-activate-btn">🔍 Сканировать</button>
+            <button class="sonar-btn" id="sonar-ad-btn">📺 +1 за рекламу</button>
+        </div>
+        <div class="status-panel">
+            <span id="status-message">🎯 Твой ход</span>
+            <button id="restart-button">🔄 Новая игра</button>
+        </div>
+    </div>
+</body>
+</html>
